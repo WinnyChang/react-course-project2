@@ -7,9 +7,9 @@ import { addItem } from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState({}); // State to store the items added to the cart
 
     const cart = useSelector(state => state.cart.items);
+    const addedToCart = useSelector(state => state.cart.addedToCart);
     const dispatch = useDispatch();
 
     const plantsArray = [
@@ -249,10 +249,6 @@ function ProductList() {
 
     const handleAddToCart = (plant) => {
         dispatch(addItem(plant));
-        setAddedToCart((prevState) => ({
-            ...prevState,
-            [plant.name]: true, // Set the plant name as key and value as true to indicate it's added to cart
-        }));
     };
    const handleCartClick = (e) => {
     e.preventDefault();
