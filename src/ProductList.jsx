@@ -260,7 +260,7 @@ function ProductList() {
 };
 const handlePlantsClick = (e) => {
     e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+    setShowPlants(true);
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
@@ -292,7 +292,7 @@ const handlePlantsClick = (e) => {
                             <circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle>
                             <path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path>
                         </svg>
-                        <p style={{fontSize: "24px", position: "relative", top: "20px", right: "40px"}}>
+                        <p style={{fontSize: "24px", position: "relative", top: "20px", right: "33px", transform: "translateX(-50%)"}}>
                             {calculateTotalQuantity()}
                         </p>
                     </h1>
@@ -303,7 +303,7 @@ const handlePlantsClick = (e) => {
                 <div className="product-grid">
                     {plantsArray.map((category, index) => (
                         <div key={index}>
-                            <h1><div>{category.category}</div></h1>
+                            <h1 style={{textAlign: "center"}}><div>{category.category}</div></h1>
                             <div className="product-list">
                                 {category.plants.map((plant, plantIndex) => (
                                 <div className="product-card" key={plantIndex}>
@@ -311,7 +311,12 @@ const handlePlantsClick = (e) => {
                                     <div className="product-title">{plant.name}</div>
                                     <div className="product-price">{plant.cost}</div>
                                     <div className="product-description">{plant.description}</div>
-                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button  
+                                        className={!addedToCart[plant.name] ? "product-button" : "product-button added-to-cart"}
+                                        onClick={() => handleAddToCart(plant)}
+                                    >
+                                        {!addedToCart[plant.name] ? 'Add to Cart' : 'Added to Cart'}
+                                    </button>
                                 </div>
                                 ))}
                             </div>
